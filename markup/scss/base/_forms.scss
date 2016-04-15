@@ -1,0 +1,233 @@
+// forms
+
+form,
+fieldset {
+	margin: 0;
+	padding: 0;
+	border-style: none;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"],
+input[type="search"],
+input[type="password"],
+//input[type='url'],
+// input[type='date'],
+textarea {
+	-webkit-appearance: none;
+	-webkit-border-radius: 0;
+	box-sizing: border-box;
+	border: 1px solid $form-element-border-color;
+	padding: $form-element-padding;
+
+	// &:hover {
+
+	// }
+
+	&:focus {
+		border-color: $form-element-focus-border-color;
+	}
+
+	@include placeholder {
+		color: $placeholder-color;
+	}
+}
+
+select {
+	-webkit-border-radius: 0;
+}
+
+textarea {
+	resize: vertical;
+	vertical-align: top;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="file"],
+input[type="submit"] {
+	-webkit-appearance: none;
+	-webkit-border-radius: 0;
+	cursor: pointer;
+}
+
+.subscribe-form {
+	label {
+		font-size: 25px;
+		line-height: 30px;
+		margin: 0 0 20px;
+		display: inline-block;
+		vertical-align: top;
+
+		@include media("<desktop") {
+			font-size: 20px;
+			line-height: 24px;
+			margin-bottom: 10px;
+		}
+
+		@include media("<tablet") {
+			font-size: 18px;
+			line-height: 20px;
+		}
+	}
+
+	.input-box {
+		@extend %clearfix;
+		font-family: $secondary-font;
+		position: relative;
+		max-width: 320px;
+	}
+
+	input[type="email"] {
+		height: 40px;
+		padding: 5px 16px;
+		background: #303234;
+		border-radius: 3px;
+		float: left;
+		width: 100%;
+		border: none;
+		padding-right: 116px;
+		outline: none;
+
+		@include placeholder {
+			color: #bfbfbf;
+		}
+
+		&:focus {
+			background: lighten(#303234, 5%);
+		}
+	}
+
+	input[type="submit"] {
+		position: absolute;
+		right: 0;
+		top: 0;
+		overflow: hidden;
+		background: #2fc6f7;
+		border-radius: 4px;
+		height: 40px;
+		border: none;
+		color: $white;
+		width: 105px;
+		transition: all .2s linear;
+
+		&:hover {
+			background: $white;
+			color: $light-blue;
+		}
+	}
+}
+
+.contact-form {
+	.row {
+		@extend %clearfix;
+		padding: 0 0 34px;
+
+		@include media("<tablet") {
+			padding-bottom: 20px;
+		}
+	}
+
+	input[type="text"],
+	input[type="email"] {
+		width: 100%;
+		float: left;
+		border: solid #808080;
+		border-width: 0 0 3px;
+		height: 35px;
+		padding: 5px 0;
+		background: none;
+		outline: none;
+
+		@include media("<tablet") {
+			border-width: 0 0 2px;
+		}
+
+		&:focus {
+			border-color: $white;
+		}
+
+		.info-holder & {
+			&:focus {
+				border-color: $black;
+			}
+		}
+	}
+
+	textarea {
+		width: 100%;
+		height: 76px;
+		min-height: 76px;
+		border: solid #808080;
+		border-width: 0 0 3px;
+		background: none;
+		padding: 5px 0;
+		outline: none;
+		margin-bottom: 10px;
+
+		&:focus {
+			border-color: $white;
+		}
+
+		.info-holder & {
+			&:focus {
+				border-color: $black;
+			}
+		}
+	}
+
+	input[type="submit"] {
+		.info-holder & {
+			min-width: 134px;
+		}
+	}
+}
+
+.order-form {
+	@extend .contact-form;
+	width: 100%;
+	text-align: left;
+	padding-bottom: 25px;
+	max-width: 430px;
+
+	input[type="text"],
+	input[type="email"],
+	textarea {
+		&:focus {
+			border-color: $black;
+		}
+	}
+
+	h3 {
+		color: $black;
+		margin-bottom: 25px;
+	}
+}
+
+input[type="submit"] {
+	background: #2fc6f7;
+	border-radius: 4px;
+	height: 40px;
+	border: none;
+	color: $white;
+	min-width: 105px;
+	transition: all .2s linear;
+	padding: 5px 15px;
+	font-family: $secondary-font;
+	letter-spacing: (50 / 1000) * 1em;
+	border: 1px solid transparent;
+
+	@include media("<tablet") {
+		height: 35px;
+	}
+
+	&:hover {
+		background: $white;
+		color: $light-blue;
+		&:hover {
+			border-color: $light-blue;
+		}
+	}
+}

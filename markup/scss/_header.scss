@@ -1,0 +1,236 @@
+[id="header"]{
+  position: relative;
+  overflow: hidden;
+}
+
+.logo{
+  float: left;
+  width: 250px;
+  padding: 20px 30px 10px 0;
+
+  @include media("<widescreen") {
+    width: 230px;
+    padding: 15px 30px 10px 0;
+  }
+
+  @include media("<desktop") {
+    width: 230px;
+  }
+
+  @include media("<tablet") {
+    width: 170px;
+  }
+}
+
+
+.nav-opener {
+  width: 38px;
+  height: 30px;
+  position: relative;
+  float: right;
+  margin: 30px 20px 20px;
+  transition: opacity 0.3s linear 0.1s;
+  display: none;
+
+  @include media("<desktop") {
+    display: block;
+  }
+
+  @include media("<tablet") {
+    margin: 25px 0 0;
+  }
+
+  &:hover{
+    &:before,
+    &:after,
+    span{
+      background: darken(#42a5f5, 10%);
+    }
+  }
+
+  &:before,
+  &:after,
+  span{
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 5px;
+    transition: all .2s linear;
+    background: #42a5f5;
+  }
+
+   &:before{
+    bottom: 25px;
+  }
+
+   span{
+    bottom: 15px;
+  }
+
+   &:after{
+    bottom: 5px;
+  }
+  .nav-active & {
+    opacity: 0;
+    span{
+      opacity: 0;
+    }
+
+    &:before,
+    &:after{
+      bottom: 50%;
+    }
+
+    &:before{
+      transform: translateY(50%) rotate( -45deg);
+    }
+
+    &:after{
+      transform: translateY(50%) rotate(-135deg);
+    }
+  }
+
+  &.close{
+    opacity: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 30px 30px 0;
+
+    @include media("<tablet") {
+      margin: 20px 10px 0;
+    }
+
+    &:hover{
+      &:before,
+      &:after,
+      span{
+        background: $light-blue;
+      }
+    }
+
+    &:before,
+    &:after,
+    span{
+      background: $white;
+    }
+
+    &:before{
+    transform: rotate( -45deg);
+    bottom: 15px;
+    }
+
+    &:after{
+      transform:  rotate(45deg);
+      bottom:15px;
+    }
+  }
+}
+
+[id="nav"]{
+  float: right;
+
+  .resize-active &{
+    transition: none;
+  }
+
+  @include media("<desktop") {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    width: 250px;
+    background: #333;
+    z-index: 2;
+    transform: translateX(250px);
+    transition: transform 0.2s linear;
+    padding-top: 84px;
+    overflow-x: hidden;
+    overflow-y: auto;
+
+    .nav-active &{
+      transform: translateX(0);
+    }
+  }
+
+  @include media("<tablet") {
+    width: 220px;
+    transform: translateX(220px);
+    padding-top: 68px;
+  }
+
+  ul{
+    @extend %listreset;
+    font-size: 0;
+    line-height: 0;
+    font-weight: 700;
+
+    a{
+      display: block;
+      padding: 43px 31px 41px;
+      color: inherit;
+      text-decoration: none;
+      position: relative;
+      transition: color 0.3s linear;
+
+      @include media("<widescreen") {
+        padding: 35px 25px;
+      }
+
+      @include media("<desktop") {
+        padding: 20px 20px;
+      }
+
+      @include media("<tablet") {
+        padding: 15px 10px;
+      }
+
+      &:before{
+        content:"";
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background: $light-blue;
+        transform: scaleY(0);
+        transform-origin: 50% 0;
+        transition: transform 0.3s ease-out;
+        transition-timing-function:cubic-bezier(0.52, 1.64, 0.37, 0.66);
+        z-index: -1;
+      }
+    }
+  }
+
+  li{
+    display:inline-block;
+    vertical-align:top;
+    color: $light-gray;
+    font-size: 14px;
+    line-height: 1.2;
+    text-transform: uppercase;
+
+    @include media("<desktop") {
+      display: block;
+      text-align: center;
+      color: $white;
+    }
+
+    &:last-child{
+        margin-right: -31px;
+
+        @include media("<desktop") {
+          margin: 0;
+        }
+    }
+  }
+
+  li.active a,
+  li a:hover{
+    color: $white;
+    &:before{
+      transform: scaleY(1);
+    }
+  }
+}
